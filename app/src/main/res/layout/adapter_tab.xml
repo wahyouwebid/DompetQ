@@ -4,34 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="horizontal">
+    style="@style/tabSelectorStyle">
 
-    <LinearLayout
-        style="@style/tabSelectorStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_xmedium"
-        android:layout_marginBottom="@dimen/spacing_xmedium"
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/tabTextSelectorStyle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/semibold"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/activity_vertical_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UselessParent">
-
-        <TextView
-            android:id="@+id/tvTitle"
-            style="@style/tabTextSelectorStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/spacing_mlarge"
-            android:layout_gravity="center_vertical"
-            android:fontFamily="@font/semibold"
-            android:gravity="center_vertical"
-            app:autoSizeTextType="uniform"
-            android:textSize="@dimen/font_16"
-            tools:text="Home" />
-    </LinearLayout>
+        tools:text="Home" />
 </androidx.constraintlayout.widget.ConstraintLayout>

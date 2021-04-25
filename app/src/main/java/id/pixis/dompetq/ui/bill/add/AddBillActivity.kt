@@ -24,7 +24,7 @@ class AddBillActivity : AppCompatActivity() {
         setupStatusBar()
         setupListener()
     }
-    
+
     private fun setupListener(){
         with(binding){
             imgBack.setOnClickListener { finish() }
