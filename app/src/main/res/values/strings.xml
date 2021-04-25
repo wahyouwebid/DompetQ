@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DompetQ</string>
+    <string name="title_summary">Summary</string>
+    <string name="title_description">Berikut statistik keuanganmu</string>
+    <string name="title_bill">Tagihan</string>
+    <string name="title_savings">Tabungan</string>
+    <string name="title_transaction">Transaksi</string>
+</resources>
