@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.databinding.FragmentExpensesBinding
-
+import id.pixis.dompetq.ui.bill.BillAdapter
 
 @AndroidEntryPoint
 class ExpensesFragment : Fragment() {
@@ -16,23 +19,42 @@ class ExpensesFragment : Fragment() {
         FragmentExpensesBinding.inflate(layoutInflater)
     }
 
+    private val adapter: ExpensesAdapter by lazy {
+        ExpensesAdapter {item -> showDetail(item)}
+    }
+
+    private val viewModel : ExpensesViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         setupViewModel()
-        setupListener()
     }
 
     private fun setupAdapter(){
-
+        with(binding){
+            rvExpenses.also {
+                it.adapter = adapter
+                it.layoutManager = LinearLayoutManager(
+                        requireContext(), LinearLayoutManager.VERTICAL, false
+                )
+                it.setHasFixedSize(true)
+            }
+        }
     }
 
     private fun setupViewModel(){
+        viewModel.data.observe(viewLifecycleOwner, adapter::submitList)
+        viewModel.getExpenses(viewLifecycleOwner)
+    }
+
+    private fun showDetail(item: Transactions) {
 
     }
 
-    private fun setupListener(){
-
+    override fun onResume() {
+        super.onResume()
+        viewModel.getExpenses(viewLifecycleOwner)
     }
 
     override fun onCreateView(

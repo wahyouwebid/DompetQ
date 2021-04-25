@@ -17,6 +17,7 @@ import id.pixis.dompetq.ui.bill.add.AddBillActivity
 import id.pixis.dompetq.ui.home.HomeFragment
 import id.pixis.dompetq.ui.savings.SavingsFragment
 import id.pixis.dompetq.ui.transaction.TransactionFragment
+import id.pixis.dompetq.ui.transaction.add.AddTransactionActivity
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                         0 -> setupFragment(HomeFragment())
                         1 -> setupFragment(TransactionFragment())
                         2 -> startActivity(
-                            Intent(this@MainActivity, AddBillActivity::class.java)
+                            Intent(this@MainActivity, AddTransactionActivity::class.java)
                         )
                         3 -> setupFragment(SavingsFragment())
                         4 -> setupFragment(BillFragment())
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
             fabAdd.setOnClickListener {
                 startActivity(
-                    Intent(this@MainActivity, AddBillActivity::class.java)
+                    Intent(this@MainActivity, AddTransactionActivity::class.java)
                 )
             }
         }

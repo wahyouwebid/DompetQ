@@ -27,45 +27,57 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/spacing_small"
-        android:fontFamily="@font/bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvAmount"
+        android:fontFamily="@font/semibold"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        app:layout_constraintEnd_toStartOf="@+id/tvCategory"
         app:layout_constraintStart_toEndOf="@+id/layoutThumbnail"
         app:layout_constraintTop_toTopOf="@+id/layoutThumbnail"
-        tools:text="Tagihan Bulanan" />
+        tools:text="Bonus Kerja Akhir Tahun" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        style="@style/textLight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:fontFamily="@font/light"
+        android:layout_marginTop="@dimen/spacing_small"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutThumbnail"
+        app:layout_constraintStart_toEndOf="@+id/layoutThumbnail"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:text="10 Januari 2020" />
 
     <TextView
         android:id="@+id/tvCategory"
         style="@style/textLight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/spacing_xmedium"
         android:fontFamily="@font/light"
-        app:layout_constraintBottom_toBottomOf="@+id/layoutThumbnail"
-        app:layout_constraintStart_toEndOf="@+id/layoutThumbnail"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        tools:text="Mobil" />
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTitle"
+        tools:text="10 Jan 2020" />
 
     <TextView
         android:id="@+id/tvAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:fontFamily="@font/semibold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/red_400"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvDate"
         tools:text="Rp.100.000" />
 
     <View
+        android:id="@+id/view2"
+        style="@style/strokeColor"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        style="@style/strokeColor"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        app:layout_constraintTop_toBottomOf="@+id/layoutThumbnail"/>
+        app:layout_constraintTop_toBottomOf="@+id/layoutThumbnail"
+        tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

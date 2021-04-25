@@ -26,6 +26,10 @@
         <item name="android:background">@drawable/bg_top_rounded_night</item>
     </style>
 
+    <style name="cardCustomStyle">
+        <item name="android:background">@drawable/bg_custom_card_night</item>
+    </style>
+
     <style name="tabDefaultStyle">
         <item name="android:background">@drawable/bg_tab_default_night</item>
     </style>
@@ -36,6 +40,14 @@
 
     <style name="tabTextSelectorStyle">
         <item name="android:textColor">@drawable/tab_text_selector_night</item>
+    </style>
+
+    <style name="radioSelectorStyle">
+        <item name="android:background">@drawable/bg_radiobutton_selector</item>
+    </style>
+
+    <style name="radioTextSelectorStyle">
+        <item name="android:textColor">@drawable/bg_text_radiobutton_selector_night</item>
     </style>
 
     <style name="strokeColor">

@@ -32,7 +32,7 @@
                 android:id="@+id/tvTitleToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_add_bill"
+                android:text="@string/title_add_transaction"
                 android:textStyle="bold"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -72,18 +72,65 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <RadioGroup
+                    android:id="@+id/rbGroup"
+                    style="@style/tabDefaultStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/spacing_mxlarge"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view">
+
+                    <RadioButton
+                        android:id="@+id/rbPemasukan"
+                        style="@style/radioSelectorStyle"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:checked="true"
+                        android:paddingLeft="@dimen/activity_vertical_margin"
+                        android:paddingTop="@dimen/spacing_medium"
+                        android:paddingRight="@dimen/activity_vertical_margin"
+                        android:paddingBottom="@dimen/spacing_medium"
+                        android:text="@string/title_income"
+                        android:textColor="@drawable/bg_text_radiobutton_selector" />
+
+                    <RadioButton
+                        android:id="@+id/rbPengeluaran"
+                        style="@style/radioSelectorStyle"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:paddingLeft="@dimen/activity_vertical_margin"
+                        android:paddingTop="@dimen/spacing_medium"
+                        android:paddingRight="@dimen/activity_vertical_margin"
+                        android:paddingBottom="@dimen/spacing_medium"
+                        android:text="@string/title_expenses"
+                        android:textColor="@drawable/bg_text_radiobutton_selector" />
+
+                </RadioGroup>
+
                 <TextView
                     android:id="@+id/tvLabelName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_label_add_bill_name"
+                    android:text="@string/title_label_add_trans_name"
                     android:layout_marginStart="@dimen/activity_vertical_margin"
                     android:layout_marginEnd="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/spacing_mxlarge"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:fontFamily="@font/regular"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view"/>
+                    app:layout_constraintTop_toBottomOf="@+id/rbGroup"/>
 
                 <EditText
                     android:id="@+id/etName"
@@ -91,7 +138,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/spacing_xxlarge"
                     android:layout_margin="@dimen/activity_vertical_margin"
-                    android:hint="@string/title_hint_bill_name"
+                    android:hint="@string/title_hint_trans_name"
                     android:paddingStart="@dimen/activity_horizontal_margin"
                     android:paddingEnd="@dimen/activity_horizontal_margin"
                     android:fontFamily="@font/light"
@@ -104,7 +151,7 @@
                     android:id="@+id/tvLabelCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_label_add_bill_category"
+                    android:text="@string/title_label_add_trans_category"
                     android:layout_marginStart="@dimen/activity_vertical_margin"
                     android:layout_marginEnd="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/spacing_mxlarge"
@@ -119,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/spacing_xxlarge"
                     android:layout_margin="@dimen/activity_vertical_margin"
-                    android:hint="@string/title_hint_bill_category"
+                    android:hint="@string/title_hint_trans_category"
                     android:paddingStart="@dimen/activity_horizontal_margin"
                     android:paddingEnd="@dimen/activity_horizontal_margin"
                     android:fontFamily="@font/light"
@@ -132,7 +179,7 @@
                     android:id="@+id/tvLabelAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_label_add_bill_amount"
+                    android:text="@string/title_label_add_trans_amount"
                     android:layout_marginStart="@dimen/activity_vertical_margin"
                     android:layout_marginEnd="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/spacing_mxlarge"
@@ -161,7 +208,7 @@
                     android:id="@+id/tvLabelDueDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_label_add_due_date"
+                    android:text="@string/title_label_add_trans_date"
                     android:layout_marginStart="@dimen/activity_vertical_margin"
                     android:layout_marginEnd="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/spacing_mxlarge"

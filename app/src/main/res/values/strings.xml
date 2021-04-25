@@ -15,4 +15,18 @@
     <string name="title_hint_bill_amount">Rp. 500.000</string>
     <string name="title_hint_bill_category">Listrik</string>
     <string name="title_save_bill">Simpan Tagihan</string>
+    <string name="title_label_add_due_date">Tanggal Jatuh Tempo</string>
+    <string name="title_hint_bill_due_date">10 April 2021</string>
+    <string name="title_is_not_empty">Silahkan Isi terlebih dahulu</string>
+    <string name="title_label_add_notes">Catatan</string>
+    <string name="title_hint_bill_notes">Optional</string>
+    <string name="title_information_increase">Kenaikan 8% dari bulan lalu</string>
+    <string name="title_information_decreased">Penurunan 4.2% dari bulan lalu</string>
+    <string name="title_add_transaction">Tambah Transaksi</string>
+    <string name="title_label_add_trans_name">Nama Transaksi</string>
+    <string name="title_hint_trans_name">Dapat Bonus Project</string>
+    <string name="title_label_add_trans_category">Kategori</string>
+    <string name="title_hint_trans_category">Gaji</string>
+    <string name="title_label_add_trans_amount">Jumlah</string>
+    <string name="title_label_add_trans_date">Tanggal Transaksi</string>
 </resources>

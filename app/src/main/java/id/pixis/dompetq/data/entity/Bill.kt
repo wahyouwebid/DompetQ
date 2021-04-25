@@ -21,7 +21,7 @@ data class Bill(
     val name: String,
     val amount: Int,
     val dueDate: String,
-    val icon: String,
+    val icon: String?,
     val category: String,
     val notes: String,
     val billStatus: Boolean = false //Belum lunas

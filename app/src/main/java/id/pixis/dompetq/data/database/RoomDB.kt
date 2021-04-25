@@ -5,11 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import id.pixis.dompetq.data.dao.BillDao
+import id.pixis.dompetq.data.dao.TransactionDao
 import id.pixis.dompetq.data.entity.Bill
+import id.pixis.dompetq.data.entity.Transactions
 
 @Database(
     entities = [
         Bill::class,
+        Transactions::class,
     ],
     version = 1,
     exportSchema = false
@@ -17,6 +20,7 @@ import id.pixis.dompetq.data.entity.Bill
 abstract class RoomDB : RoomDatabase() {
 
     abstract fun billDao() : BillDao
+    abstract fun transactionDao() : TransactionDao
 
     companion object {
 

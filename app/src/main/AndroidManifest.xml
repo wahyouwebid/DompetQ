@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TabunganQ">
-        <activity android:name=".ui.bill.add.AddBillActivity"></activity>
+        <activity android:name=".ui.transaction.add.AddTransactionActivity"></activity>
+        <activity android:name=".ui.bill.add.AddBillActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

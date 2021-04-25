@@ -15,11 +15,14 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity
-data class Transaction(
+data class Transactions(
     @PrimaryKey(autoGenerate = true)
     val id : Int? = null,
-    val type : String,
-    val amount : Long,
+    val name : String,
+    val amount : Int,
     val date : String,
-    val notes : String
+    val notes : String?,
+    val type : Int,
+    val category : String,
+    val icon : String?,
 ) : Parcelable
