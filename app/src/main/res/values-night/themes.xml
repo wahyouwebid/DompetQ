@@ -13,6 +13,7 @@
         <item name="android:fontFamily">@font/regular</item>
         <item name="cardBackgroundColor">@color/overlay_dark_50</item>
         <item name="strokeColor">@color/overlay_dark_50</item>
+        <item name="tabColor">@color/black_light</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
@@ -21,8 +22,30 @@
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
 
+    <style name="backgroundCustom">
+        <item name="android:background">@drawable/bg_top_rounded_night</item>
+    </style>
+
+    <style name="tabDefaultStyle">
+        <item name="android:background">@drawable/bg_tab_default_night</item>
+    </style>
+
+    <style name="tabSelectorStyle">
+        <item name="android:background">@drawable/tab_selector_night</item>
+    </style>
+
+    <style name="tabTextSelectorStyle">
+        <item name="android:textColor">@drawable/tab_text_selector_night</item>
+    </style>
+
     <style name="strokeColor">
-        <item name="android:background">@color/overlay_dark_50</item>
+        <item name="android:background">@color/black_light</item>
+    </style>
+
+    <style name="editTextStyle">
+        <item name="android:background">@drawable/bg_custom_edittext_night</item>
+        <item name="android:paddingStart">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingEnd">@dimen/activity_vertical_margin</item>
     </style>
 
     <style name="AppModalStyle"

@@ -16,7 +16,7 @@ interface BillDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun update(data : Bill) : Single<Long>
 
-    @Query("SELECT * FROM bill")
+    @Query("SELECT * FROM bill ORDER BY id DESC")
     fun getAll() : DataSource.Factory<Int, Bill>
 
 }

@@ -1,8 +1,7 @@
 package id.pixis.dompetq.ui
 
 import android.annotation.SuppressLint
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.pixis.dompetq.R
 import id.pixis.dompetq.databinding.ActivityMainBinding
 import id.pixis.dompetq.ui.bill.BillFragment
+import id.pixis.dompetq.ui.bill.add.AddBillActivity
 import id.pixis.dompetq.ui.home.HomeFragment
 import id.pixis.dompetq.ui.savings.SavingsFragment
 import id.pixis.dompetq.ui.transaction.TransactionFragment
@@ -57,7 +57,9 @@ class MainActivity : AppCompatActivity() {
                     when (tab.position) {
                         0 -> setupFragment(HomeFragment())
                         1 -> setupFragment(TransactionFragment())
-                        2 -> setupFragment(HomeFragment())
+                        2 -> startActivity(
+                            Intent(this@MainActivity, AddBillActivity::class.java)
+                        )
                         3 -> setupFragment(SavingsFragment())
                         4 -> setupFragment(BillFragment())
                     }
@@ -72,6 +74,12 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onTabReselected(tab: TabLayout.Tab) {}
             })
+
+            fabAdd.setOnClickListener {
+                startActivity(
+                    Intent(this@MainActivity, AddBillActivity::class.java)
+                )
+            }
         }
     }
 

@@ -1,8 +1,18 @@
 <resources>
     <string name="app_name">DompetQ</string>
-    <string name="title_summary">Summary</string>
+    <string name="title_summary">Ringkasan</string>
     <string name="title_description">Berikut statistik keuanganmu</string>
     <string name="title_bill">Tagihan</string>
     <string name="title_savings">Tabungan</string>
     <string name="title_transaction">Transaksi</string>
+    <string name="title_income">Pemasukan</string>
+    <string name="title_expenses">Pengeluaran</string>
+    <string name="title_add_bill">Tambah Tagihan</string>
+    <string name="title_label_add_bill_name">Nama Tagihan</string>
+    <string name="title_hint_bill_name">Tagihan Listrik</string>
+    <string name="title_label_add_bill_amount">Jumlah Tagihan</string>
+    <string name="title_label_add_bill_category">Kategori</string>
+    <string name="title_hint_bill_amount">Rp. 500.000</string>
+    <string name="title_hint_bill_category">Listrik</string>
+    <string name="title_save_bill">Simpan Tagihan</string>
 </resources>

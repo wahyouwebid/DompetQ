@@ -16,9 +16,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity
 data class Bill(
-    @PrimaryKey
-    val id : String,
-    val name : String,
-    val totalBill : String,
-    val dueDate : String
+    @PrimaryKey (autoGenerate = true)
+    val id: Int? = null,
+    val name: String,
+    val amount: Int,
+    val dueDate: String,
+    val icon: String,
+    val category: String,
+    val notes: String,
+    val billStatus: Boolean = false //Belum lunas
 ) : Parcelable

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imgThumbnail"
+        android:layout_width="@dimen/spacing_xxlarge"
+        android:layout_height="@dimen/spacing_xxlarge"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:fontFamily="@font/bold"
+        app:layout_constraintEnd_toStartOf="@+id/tvAmount"
+        app:layout_constraintStart_toEndOf="@+id/imgThumbnail"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Tagihan Bulanan" />
+
+    <TextView
+        android:id="@+id/tvCategory"
+        style="@style/textLight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/spacing_xmedium"
+        android:fontFamily="@font/light"
+        app:layout_constraintStart_toEndOf="@+id/imgThumbnail"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:text="Mobil" />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:fontFamily="@font/semibold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Rp.100.000" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        style="@style/strokeColor"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        app:layout_constraintTop_toBottomOf="@+id/imgThumbnail"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
