@@ -7,11 +7,13 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import dagger.hilt.android.AndroidEntryPoint
 import id.pixis.dompetq.R
 import id.pixis.dompetq.databinding.ActivityMainBinding
+import id.pixis.dompetq.databinding.BottomSheetBinding
 import id.pixis.dompetq.ui.bill.BillFragment
 import id.pixis.dompetq.ui.bill.add.AddBillActivity
 import id.pixis.dompetq.ui.home.HomeFragment
@@ -58,9 +60,7 @@ class MainActivity : AppCompatActivity() {
                     when (tab.position) {
                         0 -> setupFragment(HomeFragment())
                         1 -> setupFragment(TransactionFragment())
-                        2 -> startActivity(
-                            Intent(this@MainActivity, AddTransactionActivity::class.java)
-                        )
+                        2 -> setupBottomSheet()
                         3 -> setupFragment(SavingsFragment())
                         4 -> setupFragment(BillFragment())
                     }
@@ -76,12 +76,31 @@ class MainActivity : AppCompatActivity() {
                 override fun onTabReselected(tab: TabLayout.Tab) {}
             })
 
-            fabAdd.setOnClickListener {
+            fabAdd.setOnClickListener { setupBottomSheet() }
+        }
+    }
+
+    private fun setupBottomSheet(){
+        val binding = BottomSheetBinding.inflate(layoutInflater)
+        val dialog = BottomSheetDialog(this)
+        dialog.setContentView(binding.root)
+        with(binding) {
+            tvTransaction.setOnClickListener {
                 startActivity(
                     Intent(this@MainActivity, AddTransactionActivity::class.java)
                 )
             }
+
+            tvBill.setOnClickListener {
+                startActivity(
+                    Intent(this@MainActivity, AddBillActivity::class.java)
+                )
+            }
+
+            tvSavings.setOnClickListener {}
         }
+
+        dialog.show()
     }
 
     private fun setupFragment(fragment: Fragment) {

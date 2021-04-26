@@ -60,6 +60,10 @@ class IncomeFragment : Fragment() {
             viewModel.totalIncome.observe(viewLifecycleOwner, {
                 tvTotal.text = Converter.currencyIdr(it.total.toInt())
             })
+
+            viewModel.totalIncome.observe(viewLifecycleOwner, {
+                tvTotal.text = Converter.currencyIdr(it.total.toInt())
+            })
         }
     }
 

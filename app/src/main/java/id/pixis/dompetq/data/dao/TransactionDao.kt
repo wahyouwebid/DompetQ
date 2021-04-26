@@ -32,25 +32,47 @@ interface TransactionDao {
             endDate: String
     ): Single<SumAmount?>
 
+    @Query("SELECT SUM(amount) as total FROM transactions where type = 0 AND date BETWEEN :startDate AND :endDate")
+    fun getTotalIncomeWeek(
+        startDate: String,
+        endDate: String
+    ): Single<SumAmount?>
+
+    @Query("SELECT SUM(amount) as total FROM transactions where type = 0 AND date=:date")
+    fun getTotalIncomeDay(
+        date: String
+    ): Single<SumAmount?>
+
     @Query("SELECT SUM(amount) as total FROM transactions where type = 1 AND date BETWEEN :startDate AND :endDate")
     fun getTotalExpensesMonth(
             startDate: String,
             endDate: String
     ): Single<SumAmount?>
 
+    @Query("SELECT SUM(amount) as total FROM transactions where type = 1 AND date BETWEEN :startDate AND :endDate")
+    fun getTotalExpensesWeek(
+        startDate: String,
+        endDate: String
+    ): Single<SumAmount?>
+
+    @Query("SELECT SUM(amount) as total FROM transactions where type = 1 AND date=:date")
+    fun getTotalExpensesDay(
+        date: String
+    ): Single<SumAmount?>
+
     @Query("SELECT * FROM transactions where date BETWEEN :startDate AND :endDate ORDER BY date DESC")
-    fun getByMonth(
+    fun getTransactionByMonth(
             startDate: String,
             endDate: String
     ) : DataSource.Factory<Int, Transactions>
 
     @Query("SELECT * FROM transactions where date BETWEEN :startDate AND :endDate ORDER BY date DESC")
-    fun getByWeek(
+    fun getTransactionByWeek(
             startDate: String,
             endDate: String
     ) : DataSource.Factory<Int, Transactions>
 
     @Query("SELECT * FROM transactions where date = :date ORDER BY date DESC")
-    fun getByDay(date : String) : DataSource.Factory<Int, Transactions>
+    fun getTransactionByDay(date : String) : DataSource.Factory<Int, Transactions>
 
 }

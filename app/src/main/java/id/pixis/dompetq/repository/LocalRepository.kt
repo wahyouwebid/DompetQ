@@ -90,6 +90,28 @@ class LocalRepository @Inject constructor(
                 .let { return@let disposable::add }
     }
 
+    override fun getTotalIncomeWeek(
+        startDate: String,
+        endDate: String,
+        state: MutableLiveData<SumAmount>
+    ) {
+        db.transactionDao().getTotalIncomeWeek(startDate, endDate)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .toFlowable()
+            .subscribe(state::postValue)
+            .let { return@let disposable::add }
+    }
+
+    override fun getTotalIncomeDay(date: String, state: MutableLiveData<SumAmount>) {
+        db.transactionDao().getTotalIncomeDay(date)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .toFlowable()
+            .subscribe(state::postValue)
+            .let { return@let disposable::add }
+    }
+
     override fun getTotalExpensesMonth(
             startDate: String,
             endDate: String,
@@ -103,36 +125,58 @@ class LocalRepository @Inject constructor(
                 .let { return@let disposable::add }
     }
 
-    override fun getByDay(
+    override fun getTotalExpensesWeek(
+        startDate: String,
+        endDate: String,
+        state: MutableLiveData<SumAmount>
+    ) {
+        db.transactionDao().getTotalExpensesWeek(startDate, endDate)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .toFlowable()
+            .subscribe(state::postValue)
+            .let { return@let disposable::add }
+    }
+
+    override fun getTotalExpensesDay(date: String, state: MutableLiveData<SumAmount>) {
+        db.transactionDao().getTotalExpensesDay(date)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .toFlowable()
+            .subscribe(state::postValue)
+            .let { return@let disposable::add }
+    }
+
+    override fun getTransactionByDay(
             date: String,
             owner : LifecycleOwner,
             state: MutableLiveData<PagedList<Transactions>>
     ) {
         LivePagedListBuilder(
-                db.transactionDao().getByDay(date),
+                db.transactionDao().getTransactionByDay(date),
                 10
         ).build().observe(owner, state::postValue)
     }
 
-    override fun getByMonth(
+    override fun getTransactionByMonth(
             startDate: String,
             endDate: String, owner : LifecycleOwner,
             state: MutableLiveData<PagedList<Transactions>>
     ) {
         LivePagedListBuilder(
-                db.transactionDao().getByMonth(startDate, endDate),
+                db.transactionDao().getTransactionByMonth(startDate, endDate),
                 10
         ).build().observe(owner, state::postValue)
     }
 
-    override fun getByWeek(
+    override fun getTransactionByWeek(
             startDate: String,
             endDate: String,
             owner : LifecycleOwner,
             state: MutableLiveData<PagedList<Transactions>>
     ) {
         LivePagedListBuilder(
-                db.transactionDao().getByWeek(startDate, endDate),
+                db.transactionDao().getTransactionByWeek(startDate, endDate),
                 10
         ).build().observe(owner, state::postValue)
     }

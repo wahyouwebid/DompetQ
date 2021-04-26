@@ -59,6 +59,18 @@ class DataRepository @Inject constructor(
         localRepository.getTotalIncomeMonth(startDate, endDate, state)
     }
 
+    override fun getTotalIncomeWeek(
+        startDate: String,
+        endDate: String,
+        state: MutableLiveData<SumAmount>
+    ) {
+        localRepository.getTotalIncomeWeek(startDate, endDate, state)
+    }
+
+    override fun getTotalIncomeDay(date: String, state: MutableLiveData<SumAmount>) {
+        localRepository.getTotalIncomeDay(date, state)
+    }
+
     override fun getTotalExpensesMonth(
             startDate: String,
             endDate: String,
@@ -67,30 +79,42 @@ class DataRepository @Inject constructor(
         localRepository.getTotalExpensesMonth(startDate, endDate, state)
     }
 
-    override fun getByDay(
+    override fun getTotalExpensesWeek(
+        startDate: String,
+        endDate: String,
+        state: MutableLiveData<SumAmount>
+    ) {
+        localRepository.getTotalExpensesWeek(startDate, endDate, state)
+    }
+
+    override fun getTotalExpensesDay(date: String, state: MutableLiveData<SumAmount>) {
+        localRepository.getTotalExpensesDay(date, state)
+    }
+
+    override fun getTransactionByDay(
             date: String,
             owner: LifecycleOwner,
             state: MutableLiveData<PagedList<Transactions>>
     ) {
-        localRepository.getByDay(date, owner, state)
+        localRepository.getTransactionByDay(date, owner, state)
     }
 
-    override fun getByMonth(
+    override fun getTransactionByMonth(
             startDate: String,
             endDate: String,
             owner: LifecycleOwner,
             state: MutableLiveData<PagedList<Transactions>>
     ) {
-        localRepository.getByMonth(startDate, endDate, owner, state)
+        localRepository.getTransactionByMonth(startDate, endDate, owner, state)
     }
 
-    override fun getByWeek(
+    override fun getTransactionByWeek(
             startDate: String,
             endDate: String,
             owner: LifecycleOwner,
             state: MutableLiveData<PagedList<Transactions>>
     ) {
-        localRepository.getByWeek(startDate, endDate, owner, state)
+        localRepository.getTransactionByWeek(startDate, endDate, owner, state)
     }
 
     override fun getDisposible(): CompositeDisposable {

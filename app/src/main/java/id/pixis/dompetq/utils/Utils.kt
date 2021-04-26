@@ -1,5 +1,7 @@
 package id.pixis.dompetq.utils
 
+import android.annotation.SuppressLint
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -15,6 +17,18 @@ object Utils {
     fun getFirstDate() : String {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.DAY_OF_MONTH, 1)
+        return Converter.dateFormat(calendar.time, "yyyyMMdd")
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getCurrentDate() : String{
+        val sdf = SimpleDateFormat("yyyyMMdd")
+        return sdf.format(Date())
+    }
+
+    fun getLastWeek(daysAgo: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, - daysAgo)
         return Converter.dateFormat(calendar.time, "yyyyMMdd")
     }
 

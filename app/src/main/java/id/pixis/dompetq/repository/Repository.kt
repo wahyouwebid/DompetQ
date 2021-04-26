@@ -33,23 +33,41 @@ interface Repository {
             endDate : String,
             state : MutableLiveData<SumAmount>
     )
+    fun getTotalIncomeWeek(
+        startDate : String,
+        endDate : String,
+        state : MutableLiveData<SumAmount>
+    )
+    fun getTotalIncomeDay(
+        date : String,
+        state : MutableLiveData<SumAmount>
+    )
     fun getTotalExpensesMonth(
             startDate : String,
             endDate : String,
             state : MutableLiveData<SumAmount>
     )
-    fun getByDay(
+    fun getTotalExpensesWeek(
+        startDate : String,
+        endDate : String,
+        state : MutableLiveData<SumAmount>
+    )
+    fun getTotalExpensesDay(
+        date : String,
+        state : MutableLiveData<SumAmount>
+    )
+    fun getTransactionByDay(
             date : String,
             owner : LifecycleOwner,
             state : MutableLiveData<PagedList<Transactions>>
     )
-    fun getByMonth(
+    fun getTransactionByMonth(
             startDate : String,
             endDate : String,
             owner : LifecycleOwner,
             state : MutableLiveData<PagedList<Transactions>>
     )
-    fun getByWeek(
+    fun getTransactionByWeek(
             startDate : String,
             endDate : String,
             owner : LifecycleOwner,

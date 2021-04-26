@@ -2,6 +2,9 @@
     <string name="app_name">DompetQ</string>
     <string name="title_summary">Ringkasan</string>
     <string name="title_description">Berikut statistik keuanganmu</string>
+    <string name="title_month">Bulanan</string>
+    <string name="title_week">Mingguan</string>
+    <string name="title_day">Harian</string>
     <string name="title_bill">Tagihan</string>
     <string name="title_savings">Tabungan</string>
     <string name="title_transaction">Transaksi</string>
@@ -29,4 +32,6 @@
     <string name="title_hint_trans_category">Gaji</string>
     <string name="title_label_add_trans_amount">Jumlah</string>
     <string name="title_label_add_trans_date">Tanggal Transaksi</string>
+    <string name="title_add_savings">Tambah Saldo Tabungan</string>
+
 </resources>

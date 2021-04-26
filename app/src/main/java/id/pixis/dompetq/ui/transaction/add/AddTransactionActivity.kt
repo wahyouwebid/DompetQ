@@ -90,25 +90,21 @@ class AddTransactionActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun setupDate(){
         with(binding){
-            etDueDate.also {
-                it.setOnClickListener {
-                    DatePickerDialog(
-                            this@AddTransactionActivity, { _, year, month, dayOfMonth ->
-                            etDueDate.setText(
-                                    Converter.dateFormat(
-                                            "$dayOfMonth-" + Converter.decimalFormat(
-                                                    month + 1
-                                            ) + "-$year",
-                                            "dd-MM-yyyy",
-                                            "dd MMMM yyyy"
-                                    )
-                            )},
-                            Calendar.getInstance().get(Calendar.YEAR),
-                            Calendar.getInstance().get(Calendar.MONTH),
-                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-                    ).show()
-                }
-            }
+            DatePickerDialog(
+                this@AddTransactionActivity, { _, year, month, dayOfMonth ->
+                    etDueDate.setText(
+                        Converter.dateFormat(
+                            "$dayOfMonth-" + Converter.decimalFormat(
+                                month + 1
+                            ) + "-$year",
+                            "dd-MM-yyyy",
+                            "dd MMMM yyyy"
+                        )
+                    )},
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
     }
 
