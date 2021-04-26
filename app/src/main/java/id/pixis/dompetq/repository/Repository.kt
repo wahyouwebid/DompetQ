@@ -6,6 +6,7 @@ import androidx.paging.PagedList
 import id.pixis.dompetq.data.database.RoomDB
 import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.data.entity.Transactions
+import id.pixis.dompetq.data.model.SumAmount
 import io.reactivex.disposables.CompositeDisposable
 
 interface Repository {
@@ -14,9 +15,46 @@ interface Repository {
     fun getAllBill(owner : LifecycleOwner, state : MutableLiveData<PagedList<Bill>>)
 
     fun addTransaction(data : Transactions)
-    fun getAllTransaction(owner : LifecycleOwner, state : MutableLiveData<PagedList<Transactions>>)
-    fun getAllIncome(owner : LifecycleOwner, state : MutableLiveData<PagedList<Transactions>>)
-    fun getAllExpenses(owner : LifecycleOwner, state : MutableLiveData<PagedList<Transactions>>)
+    fun getAllTransaction(
+            owner : LifecycleOwner,
+            state : MutableLiveData<PagedList<Transactions>>
+    )
+    fun getAllIncome(
+            owner : LifecycleOwner,
+            state : MutableLiveData<PagedList<Transactions>>
+    )
+    fun getAllExpenses(
+            owner : LifecycleOwner,
+            state : MutableLiveData<PagedList<Transactions>>
+    )
+
+    fun getTotalIncomeMonth(
+            startDate : String,
+            endDate : String,
+            state : MutableLiveData<SumAmount>
+    )
+    fun getTotalExpensesMonth(
+            startDate : String,
+            endDate : String,
+            state : MutableLiveData<SumAmount>
+    )
+    fun getByDay(
+            date : String,
+            owner : LifecycleOwner,
+            state : MutableLiveData<PagedList<Transactions>>
+    )
+    fun getByMonth(
+            startDate : String,
+            endDate : String,
+            owner : LifecycleOwner,
+            state : MutableLiveData<PagedList<Transactions>>
+    )
+    fun getByWeek(
+            startDate : String,
+            endDate : String,
+            owner : LifecycleOwner,
+            state : MutableLiveData<PagedList<Transactions>>
+    )
 
     fun getDisposible() : CompositeDisposable
     fun getDatabase() : RoomDB
