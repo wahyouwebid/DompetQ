@@ -1,6 +1,6 @@
 package id.pixis.dompetq.data.model
 
 data class ChartObject(
-        val pemasukan : SumAmount?,
-        val pengeluaran : SumAmount?
+        val income : SumAmount?,
+        val expenses : SumAmount?
 )

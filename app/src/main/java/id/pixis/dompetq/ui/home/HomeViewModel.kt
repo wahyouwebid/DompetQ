@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import dagger.hilt.android.lifecycle.HiltViewModel
-import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.data.model.ChartObject
 import id.pixis.dompetq.data.model.SumAmount
@@ -20,6 +19,10 @@ class HomeViewModel @Inject constructor(
 
     val data : MutableLiveData<PagedList<Transactions>> by lazy {
         MutableLiveData()
+    }
+
+    val balance: MutableLiveData<ChartObject> by lazy {
+        MutableLiveData<ChartObject>()
     }
 
     val totalIncome : MutableLiveData<SumAmount> by lazy {
@@ -52,5 +55,29 @@ class HomeViewModel @Inject constructor(
 
     fun getTotalExpensesDay(date: String){
         repository.getTotalExpensesDay(date, totalExpenses)
+    }
+
+    fun getBalance() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val income = async {
+                repository.getTotalIncome()
+            }
+            val expenses = async {
+                repository.getTotalExpenses()
+            }
+
+            withContext(Dispatchers.Main) {
+                balance.postValue(
+                    ChartObject(
+                        income.await(),
+                        expenses.await()
+                    )
+                )
+            }
+        }
+    }
+
+    fun getTransaction(owner: LifecycleOwner){
+        repository.getAllTransaction(owner, data)
     }
 }

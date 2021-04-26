@@ -51,6 +51,10 @@ class DataRepository @Inject constructor(
         localRepository.getAllExpenses(owner, state)
     }
 
+    override suspend fun getTotalIncome(): SumAmount? {
+        return localRepository.getTotalIncome()
+    }
+
     override fun getTotalIncomeMonth(
             startDate: String,
             endDate: String,
@@ -69,6 +73,10 @@ class DataRepository @Inject constructor(
 
     override fun getTotalIncomeDay(date: String, state: MutableLiveData<SumAmount>) {
         localRepository.getTotalIncomeDay(date, state)
+    }
+
+    override suspend fun getTotalExpenses(): SumAmount? {
+        return localRepository.getTotalExpenses()
     }
 
     override fun getTotalExpensesMonth(

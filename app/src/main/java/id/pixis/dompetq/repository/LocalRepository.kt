@@ -52,7 +52,7 @@ class LocalRepository @Inject constructor(
             state: MutableLiveData<PagedList<Transactions>>
     ) {
         LivePagedListBuilder(
-                db.transactionDao().getAll(),
+                db.transactionDao().getAllTransaction(),
                 10
         ).build().observe(owner, state::postValue)
     }
@@ -75,6 +75,10 @@ class LocalRepository @Inject constructor(
                 db.transactionDao().getAllExpenses(),
                 10
         ).build().observe(owner, state::postValue)
+    }
+
+    override suspend fun getTotalIncome(): SumAmount? {
+        return db.transactionDao().getTotalIncome()
     }
 
     override fun getTotalIncomeMonth(
@@ -110,6 +114,10 @@ class LocalRepository @Inject constructor(
             .toFlowable()
             .subscribe(state::postValue)
             .let { return@let disposable::add }
+    }
+
+    override suspend fun getTotalExpenses(): SumAmount? {
+        return db.transactionDao().getTotalExpenses()
     }
 
     override fun getTotalExpensesMonth(

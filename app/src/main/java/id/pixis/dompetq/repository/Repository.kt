@@ -28,6 +28,8 @@ interface Repository {
             state : MutableLiveData<PagedList<Transactions>>
     )
 
+    suspend fun getTotalIncome() : SumAmount?
+
     fun getTotalIncomeMonth(
             startDate : String,
             endDate : String,
@@ -42,6 +44,9 @@ interface Repository {
         date : String,
         state : MutableLiveData<SumAmount>
     )
+
+    suspend fun getTotalExpenses() : SumAmount?
+
     fun getTotalExpensesMonth(
             startDate : String,
             endDate : String,

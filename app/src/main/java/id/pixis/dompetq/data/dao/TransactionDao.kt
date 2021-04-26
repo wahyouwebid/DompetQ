@@ -17,14 +17,17 @@ interface TransactionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun update(data : Transactions) : Single<Long>
 
-    @Query("SELECT * FROM transactions ORDER BY id DESC")
-    fun getAll() : DataSource.Factory<Int, Transactions>
+    @Query("SELECT * FROM transactions ORDER BY id DESC LIMIT 10")
+    fun getAllTransaction() : DataSource.Factory<Int, Transactions>
 
     @Query("SELECT * FROM transactions WHERE type = 0 ORDER BY id DESC")
     fun getAllIncome() : DataSource.Factory<Int, Transactions>
 
     @Query("SELECT * FROM transactions WHERE type = 1 ORDER BY id DESC")
     fun getAllExpenses() : DataSource.Factory<Int, Transactions>
+
+    @Query("SELECT SUM(amount) as total FROM transactions where type = 0")
+    suspend fun getTotalIncome(): SumAmount?
 
     @Query("SELECT SUM(amount) as total FROM transactions where type = 0 AND date BETWEEN :startDate AND :endDate")
     fun getTotalIncomeMonth(
@@ -42,6 +45,9 @@ interface TransactionDao {
     fun getTotalIncomeDay(
         date: String
     ): Single<SumAmount?>
+
+    @Query("SELECT SUM(amount) as total FROM transactions where type = 1")
+    suspend fun getTotalExpenses(): SumAmount?
 
     @Query("SELECT SUM(amount) as total FROM transactions where type = 1 AND date BETWEEN :startDate AND :endDate")
     fun getTotalExpensesMonth(

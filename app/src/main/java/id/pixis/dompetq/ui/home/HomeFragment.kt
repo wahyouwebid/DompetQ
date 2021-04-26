@@ -7,12 +7,18 @@ import android.view.ViewGroup
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.pixis.dompetq.R
+import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.databinding.FragmentHomeBinding
+import id.pixis.dompetq.ui.transaction.income.IncomeAdapter
 import id.pixis.dompetq.ui.transaction.income.IncomeViewModel
 import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Utils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -24,16 +30,34 @@ class HomeFragment : Fragment() {
 
     private val viewModel : HomeViewModel by viewModels()
 
+    private val adapter: TransactionAdapter by lazy {
+        TransactionAdapter {item -> showDetail(item)}
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupAdapter()
         setupData()
         setupViewModel()
         setupRadioButton()
     }
 
+    private fun setupAdapter(){
+        with(binding){
+            rvTransaction.also {
+                it.adapter = adapter
+                it.layoutManager = LinearLayoutManager(
+                    requireContext(), LinearLayoutManager.VERTICAL, false
+                )
+            }
+        }
+    }
+
     private fun setupData(){
         viewModel.getTotalIncomeMonth(Utils.getFirstDate(), Utils.getLastDate())
         viewModel.getTotalExpensesMonth(Utils.getFirstDate(), Utils.getLastDate())
+        viewModel.getBalance()
+        viewModel.getTransaction(viewLifecycleOwner)
     }
 
     private fun setupViewModel(){
@@ -45,6 +69,17 @@ class HomeFragment : Fragment() {
             viewModel.totalExpenses.observe(viewLifecycleOwner, {
                 tvExpenses.text = Converter.currencyIdr(it.total.toInt())
             })
+
+            viewModel.balance.observe(viewLifecycleOwner, {
+                val income = it.income?.total
+                val expenses = it.expenses?.total
+                val balance = (expenses?.let { i -> income?.minus(i) })
+                tvCurrentBalance.text = balance?.toInt()?.let {
+                        balances -> Converter.currencyIdr(balances)
+                }
+            })
+
+            viewModel.data.observe(viewLifecycleOwner, adapter::submitList)
         }
     }
 
@@ -86,7 +121,14 @@ class HomeFragment : Fragment() {
                     viewModel.getTotalExpensesDay(Utils.getCurrentDate())
                 }
             }
+
+            viewModel.getBalance()
+            viewModel.getTransaction(viewLifecycleOwner)
         }
+    }
+
+    private fun showDetail(item: Transactions) {
+
     }
 
     override fun onCreateView(
