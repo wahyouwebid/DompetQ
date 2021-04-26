@@ -30,13 +30,13 @@ interface TransactionDao {
     fun getTotalIncomeMonth(
             startDate: String,
             endDate: String
-    ): Single<SumAmount>
+    ): Single<SumAmount?>
 
     @Query("SELECT SUM(amount) as total FROM transactions where type = 1 AND date BETWEEN :startDate AND :endDate")
     fun getTotalExpensesMonth(
             startDate: String,
             endDate: String
-    ): Single<SumAmount>
+    ): Single<SumAmount?>
 
     @Query("SELECT * FROM transactions where date BETWEEN :startDate AND :endDate ORDER BY date DESC")
     fun getByMonth(

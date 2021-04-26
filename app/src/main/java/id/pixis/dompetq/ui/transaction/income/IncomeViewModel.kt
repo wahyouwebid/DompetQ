@@ -7,7 +7,10 @@ import androidx.paging.PagedList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.data.entity.Transactions
+import id.pixis.dompetq.data.model.ChartObject
+import id.pixis.dompetq.data.model.SumAmount
 import id.pixis.dompetq.repository.Repository
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,7 +22,15 @@ class IncomeViewModel @Inject constructor(
         MutableLiveData()
     }
 
+    val totalIncome : MutableLiveData<SumAmount> by lazy {
+        MutableLiveData()
+    }
+
     fun getIncome(owner: LifecycleOwner){
         repository.getAllIncome(owner, data)
+    }
+
+    fun getTotalIncome(startDate: String, endDate: String){
+        repository.getTotalIncomeMonth(startDate, endDate, totalIncome)
     }
 }

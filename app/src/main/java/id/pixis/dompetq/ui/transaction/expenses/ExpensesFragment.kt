@@ -11,6 +11,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.databinding.FragmentExpensesBinding
 import id.pixis.dompetq.ui.bill.BillAdapter
+import id.pixis.dompetq.utils.Converter
+import id.pixis.dompetq.utils.Utils
 
 @AndroidEntryPoint
 class ExpensesFragment : Fragment() {
@@ -28,6 +30,7 @@ class ExpensesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
+        setupData()
         setupViewModel()
     }
 
@@ -43,9 +46,18 @@ class ExpensesFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel(){
-        viewModel.data.observe(viewLifecycleOwner, adapter::submitList)
+    private fun setupData(){
         viewModel.getExpenses(viewLifecycleOwner)
+        viewModel.getTotalExpenses(Utils.getFirstDate(), Utils.getLastDate())
+    }
+
+    private fun setupViewModel(){
+        with(binding){
+            viewModel.data.observe(viewLifecycleOwner, adapter::submitList)
+            viewModel.totalExpenses.observe(viewLifecycleOwner, {
+                tvTotal.text = Converter.currencyIdr(it.total.toInt())
+            })
+        }
     }
 
     private fun showDetail(item: Transactions) {
@@ -54,7 +66,7 @@ class ExpensesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getExpenses(viewLifecycleOwner)
+        viewModel.getTotalExpenses(Utils.getFirstDate(), Utils.getLastDate())
     }
 
     override fun onCreateView(

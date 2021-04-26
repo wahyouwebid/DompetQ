@@ -12,6 +12,7 @@ import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.databinding.AdapterBillBinding
 import id.pixis.dompetq.databinding.AdapterExpensesBinding
+import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Converter.currencyIdr
 
 class ExpensesAdapter (
@@ -24,7 +25,13 @@ class ExpensesAdapter (
                 tvTitle.text = getItem(position)?.name
                 tvCategory.text = getItem(position)?.category
                 tvAmount.text = "-${getItem(position)?.amount?.let { currencyIdr(it) }}"
-                tvDate.text = getItem(position)?.date
+                tvDate.text = getItem(position)?.date?.let {
+                    Converter.dateFormat(
+                            it,
+                            "yyyyMMdd",
+                            "dd MMMM yyyy"
+                    )
+                }
                 imgThumbnail.load(R.drawable.icon_thumbnail)
                 root.setOnClickListener { showDetail.invoke(getItem(position)!!) }
             }

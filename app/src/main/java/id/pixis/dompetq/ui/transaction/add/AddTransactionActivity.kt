@@ -27,7 +27,6 @@ class AddTransactionActivity : AppCompatActivity() {
 
     private val viewModel : TransactionViewModel by viewModels()
 
-    private lateinit var date : String
     private var typeTransaction : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,11 +49,18 @@ class AddTransactionActivity : AppCompatActivity() {
                         etAmount.text.isNotEmpty() &&
                         etCategory.text.isNotEmpty()
                 ){
+
+                    val date = Converter.dateFormat(
+                            etDueDate.text.toString(),
+                            "dd MMMM yyyy",
+                            "yyyyMMdd"
+                    )
+
                     val data = Transactions(
                         null,
                         etName.text.toString(),
                         etAmount.text.toString().toInt(),
-                        etDueDate.text.toString(),
+                            date,
                         etNotes.text.toString(),
                         typeTransaction,
                         etCategory.text.toString(),
@@ -84,24 +90,25 @@ class AddTransactionActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun setupDate(){
         with(binding){
-            val calendar = Calendar.getInstance()
-            val year = calendar.get(Calendar.YEAR)
-            val month = calendar.get(Calendar.MONTH)
-            val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-            val datePicker = DatePickerDialog(this@AddTransactionActivity, { _, y, m, d ->
-                date = "$d-$m-$y"
-
-                etDueDate.setText(
-                    Converter.dateFormat(
-                        date,
-                        "dd-mm-yyyy",
-                        "dd MMMM yyyy"
-                    )
-                )
-            }, year, month, day)
-
-            datePicker.show()
+            etDueDate.also {
+                it.setOnClickListener {
+                    DatePickerDialog(
+                            this@AddTransactionActivity, { _, year, month, dayOfMonth ->
+                            etDueDate.setText(
+                                    Converter.dateFormat(
+                                            "$dayOfMonth-" + Converter.decimalFormat(
+                                                    month + 1
+                                            ) + "-$year",
+                                            "dd-MM-yyyy",
+                                            "dd MMMM yyyy"
+                                    )
+                            )},
+                            Calendar.getInstance().get(Calendar.YEAR),
+                            Calendar.getInstance().get(Calendar.MONTH),
+                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+                    ).show()
+                }
+            }
         }
     }
 

@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvToolbar"
+        android:id="@+id/tvTotal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rp10.000.000"
+        android:text=""
         android:textSize="@dimen/font_20"
         android:fontFamily="@font/regular"
         android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -30,7 +30,7 @@
         android:drawablePadding="@dimen/spacing_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvToolbar"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotal"
         app:drawableStartCompat="@drawable/ic_top"
         android:drawableTint="@color/green_400"/>
 

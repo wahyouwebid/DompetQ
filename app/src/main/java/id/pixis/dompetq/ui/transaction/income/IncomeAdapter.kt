@@ -23,7 +23,13 @@ class IncomeAdapter (
                 tvTitle.text = getItem(position)?.name
                 tvCategory.text = getItem(position)?.category
                 tvAmount.text = getItem(position)?.amount?.let { currencyIdr(it) }
-                tvDate.text = getItem(position)?.date
+                tvDate.text = getItem(position)?.date?.let {
+                    Converter.dateFormat(
+                            it,
+                            "yyyyMMdd",
+                            "dd MMMM yyyy"
+                    )
+                }
                 imgThumbnail.load(R.drawable.icon_thumbnail)
                 root.setOnClickListener { showDetail.invoke(getItem(position)!!) }
             }
