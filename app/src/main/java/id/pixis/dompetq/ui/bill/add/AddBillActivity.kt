@@ -3,6 +3,8 @@ package id.pixis.dompetq.ui.bill.add
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -20,6 +22,8 @@ import id.pixis.dompetq.ui.bill.BillViewModel
 import id.pixis.dompetq.ui.transaction.add.CategoriesAdapter
 import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Converter.dateFormat
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import java.util.*
 
 @AndroidEntryPoint
@@ -41,8 +45,8 @@ class AddBillActivity : AppCompatActivity() {
         )
     }
 
-    private var typeTransaction : Int = 1
     private var iconCategories = ""
+    private var amountBill = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +54,11 @@ class AddBillActivity : AppCompatActivity() {
         setupViewModel()
         setupStatusBar()
         setupListener()
+        setupChangeListener()
     }
 
     private fun setupViewModel(){
-        viewModel.getCategoriesByType(typeTransaction, this)
+        viewModel.getCategoriesByType(1, this)
         viewModel.categories.observe(this, adapter::submitList)
     }
 
@@ -81,7 +86,7 @@ class AddBillActivity : AppCompatActivity() {
                     val data = Bill(
                             null,
                             etName.text.toString(),
-                            etAmount.text.toString().toInt(),
+                            amountBill.toInt(),
                             date,
                             etNotes.text.toString(),
                             false,
@@ -94,6 +99,38 @@ class AddBillActivity : AppCompatActivity() {
                     showMessage(getString(R.string.title_is_not_empty))
                 }
             }
+        }
+    }
+
+    private fun setupChangeListener(){
+        with(binding){
+            etAmount.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                    etAmount.removeTextChangedListener(this)
+                    try {
+                        var originalString = s.toString()
+                        originalString = originalString.replace("\\.".toRegex(), "").replaceFirst(",".toRegex(), ".")
+                        originalString = originalString.replace("[A-Z]".toRegex(), "").replace("[a-z]".toRegex(), "")
+                        val doubleval = originalString.toInt()
+                        val symbols = DecimalFormatSymbols()
+                        symbols.decimalSeparator = ','
+                        symbols.groupingSeparator = '.'
+                        val pattern = "#,###,###"
+                        val formatter = DecimalFormat(pattern, symbols)
+                        val formattedString = formatter.format(doubleval.toLong())
+                        amountBill = formattedString.replace(".", "")
+                        etAmount.setText(formattedString)
+                        etAmount.setSelection(etAmount.text.length)
+                    } catch (nfe: NumberFormatException) {
+                        nfe.printStackTrace()
+                    }
+                    etAmount.addTextChangedListener(this)
+                    etAmount.error = null
+                }
+
+                override fun afterTextChanged(s: Editable) {}
+            })
         }
     }
 
