@@ -93,6 +93,10 @@ interface Repository {
             state : MutableLiveData<PagedList<Categories>>
     )
 
+    fun getTotalBill(
+            state : MutableLiveData<SumAmount>
+    )
+
     fun getDisposible() : CompositeDisposable
     fun getDatabase() : RoomDB
 }

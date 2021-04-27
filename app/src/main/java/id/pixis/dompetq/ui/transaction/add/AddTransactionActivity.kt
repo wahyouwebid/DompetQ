@@ -25,7 +25,6 @@ import id.pixis.dompetq.ui.home.TransactionAdapter
 import id.pixis.dompetq.utils.Converter
 import java.util.*
 
-
 @AndroidEntryPoint
 class AddTransactionActivity : AppCompatActivity() {
 

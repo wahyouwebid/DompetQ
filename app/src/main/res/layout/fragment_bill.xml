@@ -52,14 +52,12 @@
                 android:layout_marginTop="@dimen/spacing_middle"
                 android:fontFamily="@font/light"
                 android:gravity="center"
-                android:text="@string/title_information_decreased"
+                android:text="@string/title_information_bill"
                 android:textSize="@dimen/font_14"
                 android:drawablePadding="@dimen/spacing_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTotal"
-                app:drawableStartCompat="@drawable/ic_down"
-                android:drawableTint="@color/red_400"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvTotal" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

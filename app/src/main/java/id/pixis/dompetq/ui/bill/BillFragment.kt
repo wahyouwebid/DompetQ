@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.databinding.FragmentBillBinding
+import id.pixis.dompetq.utils.Converter
 
 
 @AndroidEntryPoint
@@ -29,7 +30,6 @@ class BillFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         setupViewModel()
-        setupListener()
     }
 
     private fun setupAdapter(){
@@ -45,12 +45,15 @@ class BillFragment : Fragment() {
     }
 
     private fun setupViewModel(){
-        viewModel.data.observe(viewLifecycleOwner, adapter::submitList)
-        viewModel.getData(viewLifecycleOwner)
-    }
-
-    private fun setupListener(){
-
+        with(binding){
+            viewModel.getData(viewLifecycleOwner)
+            viewModel.getTotalBill()
+            viewModel.data.observe(viewLifecycleOwner, adapter::submitList)
+            viewModel.totalBill.observe(viewLifecycleOwner, {
+                val totalAmount = Converter.currencyIdr(it.total.toInt())
+                tvTotal.text = totalAmount?.replace(",00", "")
+            })
+        }
     }
 
     private fun showDetail(item: Bill) {
@@ -60,7 +63,7 @@ class BillFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getData(viewLifecycleOwner)
-
+        viewModel.getTotalBill()
     }
 
     override fun onCreateView(

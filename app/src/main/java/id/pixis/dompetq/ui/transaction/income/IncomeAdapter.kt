@@ -23,7 +23,9 @@ class IncomeAdapter (
             if(getItem(position) != null){
                 tvTitle.text = getItem(position)?.name
                 tvCategory.text = getItem(position)?.category
-                tvAmount.text = getItem(position)?.amount?.let { currencyIdr(it) }
+                tvAmount.text = getItem(position)?.amount?.let {
+                    currencyIdr(it)?.replace(",00","")
+                }
                 tvDate.text = getItem(position)?.date?.let {
                     Converter.dateFormat(
                             it,

@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import id.pixis.dompetq.data.entity.Bill
+import id.pixis.dompetq.data.model.SumAmount
 import io.reactivex.Single
 
 @Dao
@@ -19,4 +20,6 @@ interface BillDao {
     @Query("SELECT * FROM bill ORDER BY id DESC")
     fun getAll() : DataSource.Factory<Int, Bill>
 
+    @Query("SELECT SUM(amount) as total FROM bill where billStatus = 0")
+    fun getTotalBill(): Single<SumAmount?>
 }

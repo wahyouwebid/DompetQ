@@ -28,12 +28,16 @@ class TransactionAdapter (
                 if (type == 0) {
                     tvType.text = "Pemasukan"
                     tvType.setTextColor(Color.parseColor("#66BB6A"))
-                    tvAmount.text = getItem(position)?.amount?.let { currencyIdr(it) }
+                    tvAmount.text = getItem(position)?.amount?.let {
+                        currencyIdr(it)?.replace(",00","")
+                    }
                     tvAmount.setTextColor(Color.parseColor("#66BB6A"))
                 } else  {
                     tvType.text = "Pengeluaran"
                     tvType.setTextColor(Color.parseColor("#EF5350"))
-                    tvAmount.text = "-${getItem(position)?.amount?.let { currencyIdr(it) }}"
+                    tvAmount.text = "-${getItem(position)?.amount?.let {
+                        currencyIdr(it)?.replace(",00","")
+                    }}"
                     tvAmount.setTextColor(Color.parseColor("#EF5350"))
                 }
                 tvDate.text = getItem(position)?.date?.let {

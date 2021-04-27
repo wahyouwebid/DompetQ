@@ -35,5 +35,6 @@
     <string name="title_add_savings">Tambah Saldo Tabungan</string>
     <string name="title_information_balance">Total saldo anda saat ini</string>
     <string name="title_last_transaction">Transaksi Terakhir</string>
+    <string name="title_information_bill">Total tagihan anda saat ini</string>
 
 </resources>

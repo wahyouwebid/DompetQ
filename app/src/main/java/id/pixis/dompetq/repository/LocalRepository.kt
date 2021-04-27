@@ -213,6 +213,15 @@ class LocalRepository @Inject constructor(
         ).build().observe(owner, state::postValue)
     }
 
+    override fun getTotalBill( state: MutableLiveData<SumAmount>) {
+        db.billDao().getTotalBill()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .toFlowable()
+                .subscribe(state::postValue)
+                .let { return@let disposable::add }
+    }
+
     override fun getDisposible(): CompositeDisposable {
         return disposable
     }

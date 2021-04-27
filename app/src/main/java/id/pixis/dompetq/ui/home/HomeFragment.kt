@@ -63,11 +63,14 @@ class HomeFragment : Fragment() {
     private fun setupViewModel(){
         with(binding){
             viewModel.totalIncome.observe(viewLifecycleOwner, {
-                tvIncome.text = Converter.currencyIdr(it.total.toInt())
+                val totalAmount = Converter.currencyIdr(it.total.toInt())
+                tvIncome.text = totalAmount?.replace(",00", "")
+
             })
 
             viewModel.totalExpenses.observe(viewLifecycleOwner, {
-                tvExpenses.text = Converter.currencyIdr(it.total.toInt())
+                val totalAmount = Converter.currencyIdr(it.total.toInt())
+                tvExpenses.text = totalAmount?.replace(",00", "")
             })
 
             viewModel.balance.observe(viewLifecycleOwner, {
@@ -75,7 +78,7 @@ class HomeFragment : Fragment() {
                 val expenses = it.expenses?.total
                 val balance = (expenses?.let { i -> income?.minus(i) })
                 tvCurrentBalance.text = balance?.toInt()?.let {
-                        balances -> Converter.currencyIdr(balances)
+                        balances -> Converter.currencyIdr(balances)?.replace(",00","")
                 }
             })
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.pixis.dompetq.data.entity.Bill
+import id.pixis.dompetq.data.model.SumAmount
 import id.pixis.dompetq.repository.Repository
 import javax.inject.Inject
 
@@ -18,7 +19,15 @@ class BillViewModel @Inject constructor(
         MutableLiveData()
     }
 
+    val totalBill : MutableLiveData<SumAmount> by lazy {
+        MutableLiveData()
+    }
+
     fun getData(owner: LifecycleOwner){
         repository.getAllBill(owner, data)
+    }
+
+    fun getTotalBill(){
+        repository.getTotalBill(totalBill)
     }
 }

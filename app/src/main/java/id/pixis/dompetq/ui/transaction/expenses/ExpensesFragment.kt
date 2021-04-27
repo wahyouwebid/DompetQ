@@ -55,7 +55,8 @@ class ExpensesFragment : Fragment() {
         with(binding){
             viewModel.data.observe(viewLifecycleOwner, adapter::submitList)
             viewModel.totalExpenses.observe(viewLifecycleOwner, {
-                tvTotal.text = Converter.currencyIdr(it.total.toInt())
+                val totalAmount = Converter.currencyIdr(it.total.toInt())
+                tvTotal.text = totalAmount?.replace(",00", "")
             })
         }
     }

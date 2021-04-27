@@ -138,6 +138,10 @@ class DataRepository @Inject constructor(
         localRepository.getCategoriesByType(type, owner, state)
     }
 
+    override fun getTotalBill(state: MutableLiveData<SumAmount>) {
+        localRepository.getTotalBill(state)
+    }
+
     override fun getDisposible(): CompositeDisposable {
         return localRepository.getDisposible()
     }

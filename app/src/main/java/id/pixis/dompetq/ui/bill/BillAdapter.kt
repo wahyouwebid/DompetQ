@@ -37,7 +37,9 @@ class BillAdapter (
                             "dd MMMM yyyy"
                     )
                 }
-                tvAmount.text = getItem(position)?.amount?.let { currencyIdr(it) }
+                tvAmount.text = getItem(position)?.amount?.let {
+                    currencyIdr(it)?.replace(",00","")
+                }
                 getItem(position)?.icon?.let {
                     Utils.getDrawableIdFromFileName(
                             imgThumbnail.context,
