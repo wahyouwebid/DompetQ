@@ -106,6 +106,8 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        viewModel.getBalance()
+        viewModel.getTransaction(viewLifecycleOwner)
         with(binding){
             when {
                 rbMonth.isChecked -> {
@@ -121,9 +123,6 @@ class HomeFragment : Fragment() {
                     viewModel.getTotalExpensesDay(Utils.getCurrentDate())
                 }
             }
-
-            viewModel.getBalance()
-            viewModel.getTransaction(viewLifecycleOwner)
         }
     }
 

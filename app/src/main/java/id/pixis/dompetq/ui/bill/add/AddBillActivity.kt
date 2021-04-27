@@ -13,6 +13,7 @@ import id.pixis.dompetq.R
 import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.databinding.ActivityAddBillBinding
 import id.pixis.dompetq.ui.bill.BillViewModel
+import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Converter.dateFormat
 import java.util.*
 
@@ -46,11 +47,18 @@ class AddBillActivity : AppCompatActivity() {
                         etAmount.text.isNotEmpty() &&
                         etCategory.text.isNotEmpty()
                 ){
+
+                    val date = dateFormat(
+                            etDueDate.text.toString(),
+                            "dd MMMM yyyy",
+                            "yyyyMMdd"
+                    )
+
                     val data = Bill(
                             null,
                             etName.text.toString(),
                             etAmount.text.toString().toInt(),
-                            etDueDate.text.toString(),
+                            date,
                             null,
                             etCategory.text.toString(),
                             etNotes.text.toString()
@@ -67,22 +75,21 @@ class AddBillActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun setupDate(){
         with(binding){
-            val calendar = Calendar.getInstance()
-            val year = calendar.get(Calendar.YEAR)
-            val month = calendar.get(Calendar.MONTH)
-            val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-            val datePicker = DatePickerDialog(this@AddBillActivity, { _, y, m, d ->
-                date = "$d-$m-$y"
-
-                etDueDate.setText(dateFormat(
-                        date,
-                        "dd-mm-yyyy",
-                        "dd MMMM yyyy"
-                ))
-            }, year, month, day)
-
-            datePicker.show()
+            DatePickerDialog(
+                    this@AddBillActivity, { _, year, month, dayOfMonth ->
+                etDueDate.setText(
+                        dateFormat(
+                                "$dayOfMonth-" + Converter.decimalFormat(
+                                        month + 1
+                                ) + "-$year",
+                                "dd-MM-yyyy",
+                                "dd MMMM yyyy"
+                        )
+                )},
+                    Calendar.getInstance().get(Calendar.YEAR),
+                    Calendar.getInstance().get(Calendar.MONTH),
+                    Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
     }
 

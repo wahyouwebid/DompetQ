@@ -89,15 +89,19 @@ class MainActivity : AppCompatActivity() {
                 startActivity(
                     Intent(this@MainActivity, AddTransactionActivity::class.java)
                 )
+                dialog.dismiss()
             }
 
             tvBill.setOnClickListener {
                 startActivity(
                     Intent(this@MainActivity, AddBillActivity::class.java)
                 )
+                dialog.dismiss()
             }
 
-            tvSavings.setOnClickListener {}
+            tvSavings.setOnClickListener {
+                dialog.dismiss()
+            }
         }
 
         dialog.show()

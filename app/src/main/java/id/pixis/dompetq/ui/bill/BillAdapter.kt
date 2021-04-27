@@ -9,6 +9,7 @@ import coil.load
 import id.pixis.dompetq.R
 import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.databinding.AdapterBillBinding
+import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Converter.currencyIdr
 
 class BillAdapter (
@@ -19,6 +20,13 @@ class BillAdapter (
             if(getItem(position) != null){
                 tvTitle.text = getItem(position)?.name
                 tvCategory.text = getItem(position)?.category
+                tvDueDate.text = getItem(position)?.dueDate?.let {
+                    Converter.dateFormat(
+                            it,
+                            "yyyyMMdd",
+                            "dd MMMM yyyy"
+                    )
+                }
                 tvAmount.text = getItem(position)?.amount?.let { currencyIdr(it) }
                 imgThumbnail.load(R.drawable.icon_thumbnail)
                 root.setOnClickListener { showDetail.invoke(getItem(position)!!) }
