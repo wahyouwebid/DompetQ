@@ -8,11 +8,10 @@
 
     <LinearLayout
         android:id="@+id/layoutThumbnail"
-        android:layout_width="@dimen/spacing_xxlarge"
-        android:layout_height="@dimen/spacing_xxlarge"
+        android:layout_width="@dimen/spacing_xxmlarge"
+        android:layout_height="@dimen/spacing_xxmlarge"
         android:layout_margin="@dimen/activity_vertical_margin"
         android:background="@drawable/bg_circle_thumbnail"
-        android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,7 +19,8 @@
         <ImageView
             android:id="@+id/imgThumbnail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"/>
     </LinearLayout>
 
     <TextView
@@ -37,7 +37,7 @@
         tools:text="Tagihan Bulanan" />
 
     <TextView
-        android:id="@+id/tvCategory"
+        android:id="@+id/tvBillStatus"
         style="@style/textLight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         android:fontFamily="@font/light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvTitle"
-        tools:text="Mobil" />
+        tools:text="Belum Lunas" />
 
     <TextView
         android:id="@+id/tvDueDate"
@@ -67,7 +67,7 @@
         android:fontFamily="@font/semibold"
         android:layout_marginTop="@dimen/spacing_xmedium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCategory"
+        app:layout_constraintTop_toBottomOf="@+id/tvBillStatus"
         tools:text="Rp.100.000" />
 
     <View

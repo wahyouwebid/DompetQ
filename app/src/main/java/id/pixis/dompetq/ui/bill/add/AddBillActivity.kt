@@ -7,12 +7,17 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import id.pixis.dompetq.R
 import id.pixis.dompetq.data.entity.Bill
+import id.pixis.dompetq.data.entity.Categories
 import id.pixis.dompetq.databinding.ActivityAddBillBinding
+import id.pixis.dompetq.databinding.BottomSheetCategoriesBinding
 import id.pixis.dompetq.ui.bill.BillViewModel
+import id.pixis.dompetq.ui.transaction.add.CategoriesAdapter
 import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Converter.dateFormat
 import java.util.*
@@ -24,19 +29,40 @@ class AddBillActivity : AppCompatActivity() {
         ActivityAddBillBinding.inflate(layoutInflater)
     }
 
-    private val viewModel : BillViewModel by viewModels()
+    private val viewModel : AddBillViewModel by viewModels()
+
+    private val dialog : BottomSheetDialog by lazy {
+        BottomSheetDialog(this)
+    }
+
+    private val adapter: CategoriesAdapter by lazy {
+        CategoriesAdapter(
+                showDetail = { item -> showDetail(item) }
+        )
+    }
+
+    private var typeTransaction : Int = 1
+    private var iconCategories = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setupViewModel()
         setupStatusBar()
         setupListener()
     }
+
+    private fun setupViewModel(){
+        viewModel.getCategoriesByType(typeTransaction, this)
+        viewModel.categories.observe(this, adapter::submitList)
+    }
+
 
     private fun setupListener(){
         with(binding){
             imgBack.setOnClickListener { finish() }
             etDueDate.setOnClickListener { setupDate() }
+            etCategory.setOnClickListener { setupBottomSheet() }
             btnSave.setOnClickListener {
 
                 if (
@@ -57,9 +83,10 @@ class AddBillActivity : AppCompatActivity() {
                             etName.text.toString(),
                             etAmount.text.toString().toInt(),
                             date,
-                            null,
+                            etNotes.text.toString(),
+                            false,
                             etCategory.text.toString(),
-                            etNotes.text.toString()
+                            iconCategories,
                     )
 
                     saveData(data)
@@ -106,6 +133,31 @@ class AddBillActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             )
+        }
+    }
+
+    private fun setupBottomSheet(){
+        val categoriesBinding = BottomSheetCategoriesBinding.inflate(layoutInflater)
+        dialog.setContentView(categoriesBinding.root)
+        with(categoriesBinding) {
+            rvCategories.also {
+                it.adapter = adapter
+                it.layoutManager = LinearLayoutManager(
+                        this@AddBillActivity,
+                        LinearLayoutManager.VERTICAL,
+                        false
+                )
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun showDetail(item: Categories) {
+        with(binding){
+            etCategory.setText(item.name)
+            iconCategories = item.icon
+            dialog.dismiss()
         }
     }
 }

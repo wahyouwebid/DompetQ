@@ -44,6 +44,7 @@ class AddTransactionActivity : AppCompatActivity() {
                 showDetail = { item -> showDetail(item) }
         )
     }
+
     private var typeTransaction : Int = 0
     private var iconCategories = ""
 

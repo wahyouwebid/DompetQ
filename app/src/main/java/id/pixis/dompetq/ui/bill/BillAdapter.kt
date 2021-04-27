@@ -1,5 +1,6 @@
 package id.pixis.dompetq.ui.bill
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -11,6 +12,7 @@ import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.databinding.AdapterBillBinding
 import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Converter.currencyIdr
+import id.pixis.dompetq.utils.Utils
 
 class BillAdapter (
     private val showDetail: (Bill) -> Unit
@@ -19,7 +21,15 @@ class BillAdapter (
         with(holder.view){
             if(getItem(position) != null){
                 tvTitle.text = getItem(position)?.name
-                tvCategory.text = getItem(position)?.category
+
+                if(getItem(position)?.billStatus == false) {
+                    tvBillStatus.text = "Belum Lunas"
+                    tvBillStatus.setTextColor(Color.parseColor("#EF5350"))
+                } else {
+                    tvBillStatus.text = "Lunas"
+                    tvBillStatus.setTextColor(Color.parseColor("#66BB6A"))
+                }
+
                 tvDueDate.text = getItem(position)?.dueDate?.let {
                     Converter.dateFormat(
                             it,
@@ -28,7 +38,12 @@ class BillAdapter (
                     )
                 }
                 tvAmount.text = getItem(position)?.amount?.let { currencyIdr(it) }
-                imgThumbnail.load(R.drawable.icon_thumbnail)
+                getItem(position)?.icon?.let {
+                    Utils.getDrawableIdFromFileName(
+                            imgThumbnail.context,
+                            it
+                    )
+                }?.let { imgThumbnail.setImageResource(it) }
                 root.setOnClickListener { showDetail.invoke(getItem(position)!!) }
             }
         }

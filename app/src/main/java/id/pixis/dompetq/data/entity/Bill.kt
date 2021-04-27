@@ -21,8 +21,8 @@ data class Bill(
     val name: String,
     val amount: Int,
     val dueDate: String,
-    val icon: String?,
-    val category: String,
     val notes: String,
-    val billStatus: Boolean = false //Belum lunas
+    val billStatus: Boolean = false, //Belum lunas
+    val category: String,
+    val icon: String?,
 ) : Parcelable

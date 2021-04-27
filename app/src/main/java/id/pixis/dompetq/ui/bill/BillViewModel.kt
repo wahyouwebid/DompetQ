@@ -21,8 +21,4 @@ class BillViewModel @Inject constructor(
     fun getData(owner: LifecycleOwner){
         repository.getAllBill(owner, data)
     }
-
-    fun saveData(data: Bill){
-        repository.addBill(data)
-    }
 }
