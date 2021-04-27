@@ -60,6 +60,7 @@ class BillFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getData(viewLifecycleOwner)
+
     }
 
     override fun onCreateView(

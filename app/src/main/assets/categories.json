@@ -1,0 +1,149 @@
+[{
+    "categories": [{
+        "id": 1,
+        "name": "Freelance",
+        "icon": "ic_cat_freelance",
+        "type": 0
+    }, {
+        "id": 2,
+        "name": "Gaji",
+        "icon": "ic_cat_salary",
+        "type": 0
+    }, {
+        "id": 3,
+        "name": "Kiriman",
+        "icon": "ic_cat_send",
+        "type": 0
+    }, {
+        "id": 4,
+        "name": "Lainnya",
+        "icon": "ic_cat_gift",
+        "type": 0
+    }, {
+        "id": 5,
+        "name": "Pekerjaan",
+        "icon": "ic_cat_work",
+        "type": 0
+    }, {
+        "id": 6,
+        "name": "Usaha",
+        "icon": "ic_cat_enterpreneur",
+        "type": 0
+    }, {
+        "id": 7,
+        "name": "Youtube",
+        "icon": "ic_cat_youtube",
+        "type": 0
+    },{
+        "id": 8,
+        "name": "Air",
+        "icon": "ic_cat_water",
+        "type": 1
+    }, {
+        "id": 9,
+        "name": "Belanja",
+        "icon": "ic_cat_shopping",
+        "type": 1
+    },{
+        "id": 10,
+        "name": "Bensin",
+        "icon": "ic_cat_gas_station",
+        "type": 1
+    },{
+        "id": 11,
+        "name": "Bus",
+        "icon": "ic_cat_bus",
+        "type": 1
+    },{
+        "id": 12,
+        "name": "Dapur",
+        "icon": "ic_cat_kitchen",
+        "type": 1
+    },{
+        "id": 13,
+        "name": "Elektronik",
+        "icon": "ic_cat_electronic",
+        "type": 1
+    },{
+        "id": 14,
+        "name": "Film",
+        "icon": "ic_cat_film",
+        "type": 1
+    },{
+        "id": 15,
+        "name": "Kereta",
+        "icon": "ic_cat_train",
+        "type": 1
+    },{
+        "id": 16,
+        "name": "Kesehatan",
+        "icon": "ic_cat_healt",
+        "type": 1
+    },{
+        "id": 17,
+        "name": "Kostan",
+        "icon": "ic_cat_home",
+        "type": 1
+    },{
+        "id": 18,
+        "name": "Lampu",
+        "icon": "ic_cat_lightbulb",
+        "type": 1
+    },{
+        "id": 19,
+        "name": "Listrik",
+        "icon": "ic_cat_electrical",
+        "type": 1
+    },{
+        "id": 20,
+        "name": "Makanan",
+        "icon": "ic_cat_food",
+        "type": 1
+    },{
+        "id": 21,
+        "name": "Minuman",
+        "icon": "ic_cat_drink",
+        "type": 1
+    },{
+        "id": 22,
+        "name": "Mobil",
+        "icon": "ic_cat_car",
+        "type": 1
+    },{
+        "id": 23,
+        "name": "Motor",
+        "icon": "ic_cat_bike",
+        "type": 1
+    },{
+        "id": 24,
+        "name": "Olahraga",
+        "icon": "ic_cat_sports",
+        "type": 1
+    },{
+        "id": 25,
+        "name": "Peliharaan",
+        "icon": "ic_category_pets",
+        "type": 1
+    },{
+        "id": 26,
+        "name": "Pendidikan",
+        "icon": "ic_cat_school",
+        "type": 1
+    },{
+        "id": 27,
+        "name": "Penerbangan",
+        "icon": "ic_cat_plan",
+        "type": 1
+    },{
+        "id": 28,
+        "name": "Permainan",
+        "icon": "ic_cat_game",
+        "type": 1
+    },{
+        "id": 29,
+        "name": "Tiket",
+        "icon": "ic_cat_ticket",
+        "type": 1
+    }
+    ]
+}]

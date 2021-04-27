@@ -74,6 +74,7 @@ class IncomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getTotalIncome(Utils.getFirstDate(), Utils.getLastDate())
+        viewModel.getIncome(viewLifecycleOwner)
     }
 
     override fun onCreateView(

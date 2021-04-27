@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import id.pixis.dompetq.data.database.RoomDB
 import id.pixis.dompetq.data.entity.Bill
+import id.pixis.dompetq.data.entity.Categories
 import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.data.model.SumAmount
 import io.reactivex.disposables.CompositeDisposable
@@ -77,6 +78,19 @@ interface Repository {
             endDate : String,
             owner : LifecycleOwner,
             state : MutableLiveData<PagedList<Transactions>>
+    )
+
+    fun addCategories(data : Categories)
+
+    fun getAllCategories(
+            owner : LifecycleOwner,
+            state : MutableLiveData<PagedList<Categories>>
+    )
+
+    fun getCategoriesByType(
+            type : Int,
+            owner : LifecycleOwner,
+            state : MutableLiveData<PagedList<Categories>>
     )
 
     fun getDisposible() : CompositeDisposable

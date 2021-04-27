@@ -67,6 +67,7 @@ class ExpensesFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getTotalExpenses(Utils.getFirstDate(), Utils.getLastDate())
+        viewModel.getExpenses(viewLifecycleOwner)
     }
 
     override fun onCreateView(

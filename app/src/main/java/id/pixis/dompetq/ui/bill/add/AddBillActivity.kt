@@ -26,8 +26,6 @@ class AddBillActivity : AppCompatActivity() {
 
     private val viewModel : BillViewModel by viewModels()
 
-    private lateinit var date : String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

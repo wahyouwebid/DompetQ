@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import id.pixis.dompetq.data.database.RoomDB
 import id.pixis.dompetq.data.entity.Bill
+import id.pixis.dompetq.data.entity.Categories
 import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.data.model.SumAmount
 import io.reactivex.disposables.CompositeDisposable
@@ -26,8 +27,8 @@ class DataRepository @Inject constructor(
         localRepository.getAllBill(owner, state)
     }
 
-    override fun addTransaction(data: Transactions) {
-        localRepository.addTransaction(data)
+    override fun addCategories(data: Categories) {
+        localRepository.addCategories(data)
     }
 
     override fun getAllTransaction(
@@ -123,6 +124,18 @@ class DataRepository @Inject constructor(
             state: MutableLiveData<PagedList<Transactions>>
     ) {
         localRepository.getTransactionByWeek(startDate, endDate, owner, state)
+    }
+
+    override fun addTransaction(data: Transactions) {
+        localRepository.addTransaction(data)
+    }
+
+    override fun getAllCategories(owner: LifecycleOwner, state: MutableLiveData<PagedList<Categories>>) {
+        localRepository.getAllCategories(owner, state)
+    }
+
+    override fun getCategoriesByType(type: Int, owner: LifecycleOwner, state: MutableLiveData<PagedList<Categories>>) {
+        localRepository.getCategoriesByType(type, owner, state)
     }
 
     override fun getDisposible(): CompositeDisposable {

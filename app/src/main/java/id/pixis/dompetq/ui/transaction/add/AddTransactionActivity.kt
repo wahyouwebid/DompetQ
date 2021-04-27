@@ -2,18 +2,26 @@ package id.pixis.dompetq.ui.transaction.add
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import id.pixis.dompetq.R
+import id.pixis.dompetq.data.entity.Categories
 import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.databinding.ActivityAddTransactionBinding
-import id.pixis.dompetq.ui.transaction.TransactionViewModel
+import id.pixis.dompetq.databinding.BottomSheetBinding
+import id.pixis.dompetq.databinding.BottomSheetCategoriesBinding
+import id.pixis.dompetq.ui.bill.add.AddBillActivity
+import id.pixis.dompetq.ui.home.TransactionAdapter
 import id.pixis.dompetq.utils.Converter
 import java.util.*
 
@@ -25,9 +33,19 @@ class AddTransactionActivity : AppCompatActivity() {
         ActivityAddTransactionBinding.inflate(layoutInflater)
     }
 
-    private val viewModel : TransactionViewModel by viewModels()
+    private val viewModel : AddTransactionViewModel by viewModels()
 
+    private val dialog : BottomSheetDialog by lazy {
+        BottomSheetDialog(this)
+    }
+
+    private val adapter: CategoriesAdapter by lazy {
+        CategoriesAdapter(
+                showDetail = { item -> showDetail(item) }
+        )
+    }
     private var typeTransaction : Int = 0
+    private var iconCategories = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +53,19 @@ class AddTransactionActivity : AppCompatActivity() {
         setupStatusBar()
         setupListener()
         setupRadioButton()
+        setupViewModel()
+    }
+
+    private fun setupViewModel(){
+        viewModel.getCategoriesByType(typeTransaction, this)
+        viewModel.categories.observe(this, adapter::submitList)
     }
 
     private fun setupListener(){
         with(binding){
             imgBack.setOnClickListener { finish() }
             etDueDate.setOnClickListener { setupDate() }
+            etCategory.setOnClickListener { setupBottomSheet() }
             btnSave.setOnClickListener {
 
                 if (
@@ -64,7 +89,7 @@ class AddTransactionActivity : AppCompatActivity() {
                         etNotes.text.toString(),
                         typeTransaction,
                         etCategory.text.toString(),
-                        null
+                        iconCategories
                     )
 
                     saveData(data)
@@ -77,13 +102,15 @@ class AddTransactionActivity : AppCompatActivity() {
 
     private fun setupRadioButton(){
         with(binding){
-            rbGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+            rbGroup.setOnCheckedChangeListener { _, checkedId ->
                 if (checkedId == R.id.rbPemasukan) {
                     typeTransaction = 0
+                    viewModel.getCategoriesByType(0, this@AddTransactionActivity)
                 } else if (checkedId == R.id.rbPengeluaran) {
                     typeTransaction = 1
+                    viewModel.getCategoriesByType(1, this@AddTransactionActivity)
                 }
-            })
+            }
         }
     }
 
@@ -123,6 +150,31 @@ class AddTransactionActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             )
+        }
+    }
+
+    private fun setupBottomSheet(){
+        val categoriesBinding = BottomSheetCategoriesBinding.inflate(layoutInflater)
+        dialog.setContentView(categoriesBinding.root)
+        with(categoriesBinding) {
+            rvCategories.also {
+                it.adapter = adapter
+                it.layoutManager = LinearLayoutManager(
+                        this@AddTransactionActivity,
+                        LinearLayoutManager.VERTICAL,
+                        false
+                )
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun showDetail(item: Categories) {
+        with(binding){
+            etCategory.setText(item.name)
+            iconCategories = item.icon
+            dialog.dismiss()
         }
     }
 }

@@ -14,6 +14,7 @@ import id.pixis.dompetq.databinding.AdapterBillBinding
 import id.pixis.dompetq.databinding.AdapterExpensesBinding
 import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Converter.currencyIdr
+import id.pixis.dompetq.utils.Utils
 
 class ExpensesAdapter (
     private val showDetail: (Transactions) -> Unit
@@ -32,7 +33,12 @@ class ExpensesAdapter (
                             "dd MMMM yyyy"
                     )
                 }
-                imgThumbnail.load(R.drawable.icon_thumbnail)
+                getItem(position)?.icon?.let {
+                    Utils.getDrawableIdFromFileName(
+                        imgThumbnail.context,
+                        it
+                    )
+                }?.let { imgThumbnail.setImageResource(it) }
                 root.setOnClickListener { showDetail.invoke(getItem(position)!!) }
             }
         }

@@ -1,6 +1,9 @@
 package id.pixis.dompetq.utils
 
+import android.R
 import android.annotation.SuppressLint
+import android.content.Context
+import android.net.Uri
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,7 +31,7 @@ object Utils {
 
     fun getLastWeek(daysAgo: Int): String {
         val calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_YEAR, - daysAgo)
+        calendar.add(Calendar.DAY_OF_YEAR, -daysAgo)
         return Converter.dateFormat(calendar.time, "yyyyMMdd")
     }
 
@@ -36,5 +39,9 @@ object Utils {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
         return Converter.dateFormat(calendar.time, "yyyyMMdd")
+    }
+
+    fun getDrawableIdFromFileName(context: Context, nameOfDrawable: String): Int {
+        return context.resources.getIdentifier(nameOfDrawable, "drawable", context.packageName)
     }
 }

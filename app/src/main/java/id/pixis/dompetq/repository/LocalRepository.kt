@@ -6,6 +6,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import id.pixis.dompetq.data.database.RoomDB
 import id.pixis.dompetq.data.entity.Bill
+import id.pixis.dompetq.data.entity.Categories
 import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.data.model.SumAmount
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -185,6 +186,29 @@ class LocalRepository @Inject constructor(
     ) {
         LivePagedListBuilder(
                 db.transactionDao().getTransactionByWeek(startDate, endDate),
+                10
+        ).build().observe(owner, state::postValue)
+    }
+
+    override fun addCategories(data: Categories) {
+        db.categoriesDao().add(data)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .toFlowable()
+                .subscribe()
+                .let { return@let disposable::add }
+    }
+
+    override fun getAllCategories(owner: LifecycleOwner, state: MutableLiveData<PagedList<Categories>>) {
+        LivePagedListBuilder(
+                db.categoriesDao().getAllCategories(),
+                10
+        ).build().observe(owner, state::postValue)
+    }
+
+    override fun getCategoriesByType(type: Int, owner: LifecycleOwner, state: MutableLiveData<PagedList<Categories>>) {
+        LivePagedListBuilder(
+                db.categoriesDao().getCategoriesByType(type),
                 10
         ).build().observe(owner, state::postValue)
     }
