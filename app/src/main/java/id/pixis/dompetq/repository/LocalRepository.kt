@@ -39,6 +39,15 @@ class LocalRepository @Inject constructor(
         ).build().observe(owner, state::postValue)
     }
 
+    override fun deleteBill(data: Bill, state: MutableLiveData<Boolean>) {
+        db.billDao().delete(data)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .toFlowable()
+                .subscribe()
+                .let { return@let disposable::add }
+    }
+
     override fun addTransaction(data: Transactions) {
         db.transactionDao().add(data)
                 .subscribeOn(Schedulers.io())
@@ -56,6 +65,15 @@ class LocalRepository @Inject constructor(
                 db.transactionDao().getAllTransaction(),
                 10
         ).build().observe(owner, state::postValue)
+    }
+
+    override fun deleteTransaction(data: Transactions, state: MutableLiveData<Boolean>) {
+        db.transactionDao().delete(data)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .toFlowable()
+                .subscribe()
+                .let { return@let disposable::add }
     }
 
     override fun getAllIncome(

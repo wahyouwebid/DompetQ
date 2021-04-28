@@ -27,6 +27,10 @@ class DataRepository @Inject constructor(
         localRepository.getAllBill(owner, state)
     }
 
+    override fun deleteBill(data: Bill, state: MutableLiveData<Boolean>) {
+        localRepository.deleteBill(data, state)
+    }
+
     override fun addCategories(data: Categories) {
         localRepository.addCategories(data)
     }
@@ -36,6 +40,10 @@ class DataRepository @Inject constructor(
             state: MutableLiveData<PagedList<Transactions>>
     ) {
         localRepository.getAllTransaction(owner, state)
+    }
+
+    override fun deleteTransaction(data: Transactions, state: MutableLiveData<Boolean>) {
+        localRepository.deleteTransaction(data, state)
     }
 
     override fun getAllIncome(

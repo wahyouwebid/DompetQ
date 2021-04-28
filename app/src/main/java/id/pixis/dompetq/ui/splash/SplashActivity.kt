@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import id.pixis.dompetq.databinding.ActivitySplashBinding
-import id.pixis.dompetq.ui.MainActivity
+import id.pixis.dompetq.ui.main.MainActivity
 import id.pixis.dompetq.ui.service.CategoriesService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

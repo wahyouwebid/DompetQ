@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TabunganQ">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait" />
 
         <activity android:name=".ui.transaction.add.AddTransactionActivity"

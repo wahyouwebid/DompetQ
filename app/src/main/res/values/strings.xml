@@ -36,5 +36,9 @@
     <string name="title_information_balance">Total saldo anda saat ini</string>
     <string name="title_last_transaction">Transaksi Terakhir</string>
     <string name="title_information_bill">Total tagihan anda saat ini</string>
+    <string name="title_wishlist">Daftar Keinginan</string>
+    <string name="title_receivable">Hutang</string>
+    <string name="title_settings">Pengaturan</string>
+    <string name="title_report">Laporan</string>
 
 </resources>

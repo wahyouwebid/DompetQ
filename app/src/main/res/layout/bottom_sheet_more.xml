@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:id="@+id/tvWishList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_wishlist"
+        android:gravity="center_vertical"
+        android:drawablePadding="@dimen/spacing_xmedium"
+        android:textSize="@dimen/font_16"
+        android:padding="@dimen/activity_vertical_margin"
+        app:drawableStartCompat="@drawable/ic_wishlist"
+        android:background="?selectableItemBackground"
+        android:focusable="true"
+        android:clickable="true"/>
+
+    <View
+        android:id="@+id/lineWithList"
+        style="@style/strokeColor"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+
+    <TextView
+        android:id="@+id/tvReceivable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_receivable"
+        android:gravity="center_vertical"
+        android:drawablePadding="@dimen/spacing_xmedium"
+        android:textSize="@dimen/font_16"
+        android:padding="@dimen/activity_vertical_margin"
+        app:drawableStartCompat="@drawable/ic_receivable"
+        android:background="?selectableItemBackground"
+        android:focusable="true"
+        android:clickable="true"/>
+
+    <View
+        android:id="@+id/lineReceivable"
+        style="@style/strokeColor"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+
+    <TextView
+        android:id="@+id/tvReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_report"
+        android:gravity="center_vertical"
+        android:drawablePadding="@dimen/spacing_xmedium"
+        android:textSize="@dimen/font_16"
+        android:padding="@dimen/activity_vertical_margin"
+        app:drawableStartCompat="@drawable/ic_outline_report"
+        android:background="?selectableItemBackground"
+        android:focusable="true"
+        android:clickable="true"/>
+
+    <View
+        android:id="@+id/lineReport"
+        style="@style/strokeColor"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+
+    <TextView
+        android:id="@+id/tvSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_savings"
+        android:gravity="center_vertical"
+        android:drawablePadding="@dimen/spacing_xmedium"
+        android:textSize="@dimen/font_16"
+        android:padding="@dimen/activity_vertical_margin"
+        app:drawableStartCompat="@drawable/ic_outline_savings"
+        android:focusable="true"
+        android:background="?selectableItemBackground"
+        android:clickable="true"/>
+
+    <View
+        android:id="@+id/lineSettings"
+        style="@style/strokeColor"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+
+</LinearLayout>

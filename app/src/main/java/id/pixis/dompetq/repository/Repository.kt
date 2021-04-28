@@ -13,13 +13,20 @@ import io.reactivex.disposables.CompositeDisposable
 interface Repository {
 
     fun addBill(data : Bill)
+
     fun getAllBill(owner : LifecycleOwner, state : MutableLiveData<PagedList<Bill>>)
 
+    fun deleteBill(data : Bill, state : MutableLiveData<Boolean>)
+
     fun addTransaction(data : Transactions)
+
     fun getAllTransaction(
             owner : LifecycleOwner,
             state : MutableLiveData<PagedList<Transactions>>
     )
+
+    fun deleteTransaction(data : Transactions, state : MutableLiveData<Boolean>)
+
     fun getAllIncome(
             owner : LifecycleOwner,
             state : MutableLiveData<PagedList<Transactions>>

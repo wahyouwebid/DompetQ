@@ -24,6 +24,26 @@
             android:layout_gravity="center"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layoutDelete"
+        android:layout_width="@dimen/spacing_xxmlarge"
+        android:layout_height="@dimen/spacing_xxmlarge"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:background="@drawable/bg_circle_delete"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgDelete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_delete"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"

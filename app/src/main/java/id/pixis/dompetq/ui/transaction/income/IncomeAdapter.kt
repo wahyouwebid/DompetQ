@@ -1,6 +1,7 @@
 package id.pixis.dompetq.ui.transaction.income
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -16,7 +17,8 @@ import id.pixis.dompetq.utils.Converter.currencyIdr
 import id.pixis.dompetq.utils.Utils
 
 class IncomeAdapter (
-    private val showDetail: (Transactions) -> Unit
+    private val showDetail: (Transactions) -> Unit,
+    private val deleteItem: (Transactions) -> Unit
 ) : PagedListAdapter<Transactions, IncomeAdapter.ViewHolder>(DIFF_CALLBACK) {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.view){
@@ -39,7 +41,19 @@ class IncomeAdapter (
                         it
                     )
                 }?.let { imgThumbnail.setImageResource(it) }
-                root.setOnClickListener { showDetail.invoke(getItem(position)!!) }
+                root.setOnClickListener {
+                    showDetail.invoke(getItem(position)!!)
+                    layoutDelete.visibility = View.GONE
+                }
+                root.setOnLongClickListener {
+                    layoutDelete.visibility = View.VISIBLE
+                    true
+                }
+
+                layoutDelete.setOnClickListener {
+                    deleteItem.invoke(getItem(position)!!)
+                    layoutDelete.visibility = View.GONE
+                }
             }
         }
     }

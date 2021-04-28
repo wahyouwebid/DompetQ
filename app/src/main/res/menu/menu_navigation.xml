@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/menu_savings"
+            android:icon="@drawable/ic_savings"
+            android:title="@string/title_savings"/>
+
+        <item
+            android:id="@+id/menu_wishlist"
+            android:icon="@drawable/ic_savings"
+            android:title="@string/title_wishlist"/>
+
+        <item
+            android:id="@+id/menu_receivable"
+            android:icon="@drawable/ic_savings"
+            android:title="@string/title_receivable"/>
+
+        <item
+            android:id="@+id/menu_report"
+            android:icon="@drawable/ic_savings"
+            android:title="@string/title_report"/>
+
+        <item
+            android:id="@+id/menu_settings"
+            android:icon="@drawable/ic_savings"
+            android:title="@string/title_settings"/>
+    </group>
+</menu>

@@ -1,10 +1,7 @@
 package id.pixis.dompetq.data.dao
 
 import androidx.paging.DataSource
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.data.model.SumAmount
 import io.reactivex.Single
@@ -16,6 +13,9 @@ interface TransactionDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun update(data : Transactions) : Single<Long>
+
+    @Delete
+    fun delete(data : Transactions) :Single<Int>
 
     @Query("SELECT * FROM transactions ORDER BY id DESC LIMIT 10")
     fun getAllTransaction() : DataSource.Factory<Int, Transactions>

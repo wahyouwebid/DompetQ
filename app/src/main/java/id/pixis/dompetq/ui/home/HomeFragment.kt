@@ -12,8 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.pixis.dompetq.R
 import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.databinding.FragmentHomeBinding
-import id.pixis.dompetq.ui.transaction.income.IncomeAdapter
-import id.pixis.dompetq.ui.transaction.income.IncomeViewModel
 import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Utils
 import kotlinx.coroutines.CoroutineScope
@@ -83,6 +81,7 @@ class HomeFragment : Fragment() {
             })
 
             viewModel.data.observe(viewLifecycleOwner, adapter::submitList)
+
         }
     }
 

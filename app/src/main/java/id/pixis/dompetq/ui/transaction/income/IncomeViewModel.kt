@@ -22,6 +22,10 @@ class IncomeViewModel @Inject constructor(
         MutableLiveData()
     }
 
+    val delete : MutableLiveData<Boolean> by lazy {
+        MutableLiveData()
+    }
+
     val totalIncome : MutableLiveData<SumAmount> by lazy {
         MutableLiveData()
     }
@@ -32,5 +36,9 @@ class IncomeViewModel @Inject constructor(
 
     fun getTotalIncome(startDate: String, endDate: String){
         repository.getTotalIncomeMonth(startDate, endDate, totalIncome)
+    }
+
+    fun deleteData(data : Transactions){
+        repository.deleteTransaction(data, delete)
     }
 }

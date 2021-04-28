@@ -24,7 +24,10 @@ class IncomeFragment : Fragment() {
     }
 
     private val adapter: IncomeAdapter by lazy {
-        IncomeAdapter {item -> showDetail(item)}
+        IncomeAdapter (
+                showDetail = {item -> showDetail(item)},
+                deleteItem = {item -> deleteData(item)}
+        )
     }
 
     private val viewModel : IncomeViewModel by viewModels()
@@ -65,11 +68,19 @@ class IncomeFragment : Fragment() {
                 val totalAmount = Converter.currencyIdr(it.total.toInt())
                 tvTotal.text = totalAmount?.replace(",00", "")
             })
+
+            viewModel.delete.observe(viewLifecycleOwner, {
+                viewModel.getIncome(viewLifecycleOwner)
+            })
         }
     }
 
     private fun showDetail(item: Transactions) {
 
+    }
+
+    private fun deleteData(item: Transactions) {
+        viewModel.deleteData(item)
     }
 
     override fun onResume() {
