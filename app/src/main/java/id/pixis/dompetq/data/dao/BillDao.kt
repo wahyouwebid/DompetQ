@@ -3,7 +3,6 @@ package id.pixis.dompetq.data.dao
 import androidx.paging.DataSource
 import androidx.room.*
 import id.pixis.dompetq.data.entity.Bill
-import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.data.model.SumAmount
 import io.reactivex.Single
 

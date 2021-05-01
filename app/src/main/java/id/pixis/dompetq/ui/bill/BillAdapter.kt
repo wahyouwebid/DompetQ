@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import id.pixis.dompetq.R
 import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.databinding.AdapterBillBinding
 import id.pixis.dompetq.utils.Converter

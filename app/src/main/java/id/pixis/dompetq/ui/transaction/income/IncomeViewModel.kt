@@ -5,12 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import dagger.hilt.android.lifecycle.HiltViewModel
-import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.data.entity.Transactions
-import id.pixis.dompetq.data.model.ChartObject
 import id.pixis.dompetq.data.model.SumAmount
 import id.pixis.dompetq.repository.Repository
-import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @HiltViewModel

@@ -1,6 +1,5 @@
 package id.pixis.dompetq.ui.transaction.add
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import id.pixis.dompetq.data.entity.Categories
 import id.pixis.dompetq.databinding.AdapterCategoriesBinding
-import id.pixis.dompetq.utils.Utils
 import id.pixis.dompetq.utils.Utils.getDrawableIdFromFileName
 
 

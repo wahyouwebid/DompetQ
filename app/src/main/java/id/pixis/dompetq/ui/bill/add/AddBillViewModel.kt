@@ -7,7 +7,6 @@ import androidx.paging.PagedList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.data.entity.Categories
-import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.repository.Repository
 import javax.inject.Inject
 

@@ -5,9 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.data.entity.Categories
-import id.pixis.dompetq.data.entity.Transactions
 import io.reactivex.Single
 
 @Dao

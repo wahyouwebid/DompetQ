@@ -18,7 +18,6 @@ import id.pixis.dompetq.data.entity.Bill
 import id.pixis.dompetq.data.entity.Categories
 import id.pixis.dompetq.databinding.ActivityAddBillBinding
 import id.pixis.dompetq.databinding.BottomSheetCategoriesBinding
-import id.pixis.dompetq.ui.bill.BillViewModel
 import id.pixis.dompetq.ui.transaction.add.CategoriesAdapter
 import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Converter.dateFormat

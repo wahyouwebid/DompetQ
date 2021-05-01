@@ -1,9 +1,7 @@
 package id.pixis.dompetq.utils
 
-import android.R
 import android.annotation.SuppressLint
 import android.content.Context
-import android.net.Uri
 import java.text.SimpleDateFormat
 import java.util.*
 

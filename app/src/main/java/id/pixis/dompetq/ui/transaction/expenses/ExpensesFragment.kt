@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.pixis.dompetq.data.entity.Transactions
 import id.pixis.dompetq.databinding.FragmentExpensesBinding
-import id.pixis.dompetq.ui.bill.BillAdapter
 import id.pixis.dompetq.utils.Converter
 import id.pixis.dompetq.utils.Utils
 

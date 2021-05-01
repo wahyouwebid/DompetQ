@@ -1,10 +1,10 @@
 package id.pixis.dompetq.ui.splash
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import id.pixis.dompetq.databinding.ActivitySplashBinding
 import id.pixis.dompetq.ui.main.MainActivity
 import id.pixis.dompetq.ui.service.CategoriesService
